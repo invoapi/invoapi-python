@@ -15,7 +15,15 @@ Python-Client für die [invoapi.de](https://invoapi.de) E-Rechnungs-API: **XRech
 pip install invoapi
 ```
 
-Auf macOS und Linux heißt der Befehl oft `pip3`; überall funktioniert `python3 -m pip install invoapi`. Mit uv: `uv add invoapi`. Am besten in einer virtuellen Umgebung (`python3 -m venv .venv`). `pipx` ist nicht geeignet: es ist für Kommandozeilen-Programme gedacht, das SDK ist eine Bibliothek zum Importieren.
+Auf dem Mac und unter Linux gibt es `pip` meist nicht, und das System-Python (z. B. von Homebrew) nimmt keine Pakete an („externally-managed-environment“). Legen Sie dort eine eigene Umgebung für Ihr Projekt an:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install invoapi
+```
+
+Mit uv geht es in einem Schritt: `uv add invoapi`. `pipx` ist nicht geeignet: Es ist für Kommandozeilen-Programme gedacht, das SDK ist eine Bibliothek zum Importieren.
 
 Den API-Schlüssel finden Sie im [Dashboard](https://invoapi.de/dashboard) unter **API-Schlüssel**. Der Client liest ihn aus der Umgebungsvariable `INVOAPI_API_KEY`, oder Sie übergeben ihn direkt: `invoapi.Client("inv_live_…")`.
 
