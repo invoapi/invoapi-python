@@ -1,0 +1,64 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "invoapi"
+dynamic = ["version"]
+description = "Python client for the invoapi.de e-invoicing API: XRechnung, ZUGFeRD / Factur-X, EN 16931, UBL, CII, Peppol"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+authors = [{ name = "invoapi", email = "info@invoapi.de" }]
+keywords = ["e-rechnung", "xrechnung", "zugferd", "factur-x", "en16931", "peppol", "e-invoice", "kosit", "ubl", "cii"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Natural Language :: German",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Office/Business :: Financial :: Accounting",
+    "Typing :: Typed",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://invoapi.de"
+Documentation = "https://invoapi.de/docs"
+Source = "https://github.com/invoapi/invoapi-python"
+Issues = "https://github.com/invoapi/invoapi-python/issues"
+
+[tool.hatch.version]
+path = "src/invoapi/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/invoapi"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/invoapi", "tests", "README.md", "LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: calls the real API and spends allowance (needs INVOAPI_API_KEY)"]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["src"]
